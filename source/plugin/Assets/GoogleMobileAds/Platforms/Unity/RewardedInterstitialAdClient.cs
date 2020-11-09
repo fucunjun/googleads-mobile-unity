@@ -12,21 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Reflection;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
+using GoogleMobileAds;
+using GoogleMobileAds.Api;
+using GoogleMobileAds.Common;
 
-public class ButtonBehaviour : MonoBehaviour
+namespace GoogleMobileAds.Unity
 {
-    public event EventHandler<EventArgs> OnLeavingApplication;
-
-    public void OpenURL()
+    public class RewardedInterstitialAdClient : RewardingAdBaseClient, IRewardedInterstitialAdClient
     {
-        Debug.Log("Opened URL");
-        Application.OpenURL("http://google.com");
-        if (OnLeavingApplication != null)
+
+        // Creates a rewarded ad.
+        public void CreateRewardedInterstitialAd()
         {
-            OnLeavingApplication.Invoke(this, new EventArgs());
+
+        }
+
+        // Load a rewarded interstial ad.
+        public void LoadAd(string adUnitID, AdRequest request)
+        {
+            base.LoadAd(request);
         }
     }
 }

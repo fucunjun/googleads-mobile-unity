@@ -29,9 +29,9 @@ namespace GoogleMobileAds.Unity
         public event EventHandler<EventArgs> OnAdLoaded;
         // Ad event fired when the banner ad has failed to load.
         public event EventHandler<AdFailedToLoadEventArgs> OnAdFailedToLoad;
-        // Ad event fired when the banner ad is opened.
+        // Ad event fired when the rewarded ad is opened.
         public event EventHandler<EventArgs> OnAdOpening;
-        // Ad event fired when the banner ad is closed.
+        // Ad event fired when the rewarded ad is closed.
         public event EventHandler<EventArgs> OnAdClosed;
         // Ad event fired when the banner ad is leaving the application.
         public event EventHandler<EventArgs> OnAdLeavingApplication;
@@ -62,7 +62,6 @@ namespace GoogleMobileAds.Unity
         private void CreateButtonBehavior()
         {
             buttonBehaviour = new ButtonBehaviour();
-            buttonBehaviour.OnAdOpening += OnAdOpening;
             buttonBehaviour.OnLeavingApplication += OnAdLeavingApplication;
         }
 
@@ -198,18 +197,6 @@ namespace GoogleMobileAds.Unity
             {
                 Debug.Log("No existing banner in game");
             }
-        }
-
-        // Returns the mediation adapter class name.
-        public string MediationAdapterClassName()
-        {
-            return new ResponseInfoDummyClient().GetMediationAdapterClassName();
-        }
-
-        // Returns ad request Response info client.
-        public IResponseInfoClient GetResponseInfoClient()
-        {
-            return new ResponseInfoDummyClient();
         }
 
         private void SetAndStretchAd(GameObject dummyAd, AdPosition pos, AdSize adSize)
